@@ -37,7 +37,6 @@ RDEPENDS_${PN} += "tlm"
 DEPENDS = ""
 #DEPENDS of weston
 DEPENDS += "mtdev"
-DEPENDS += "cairo"
 DEPENDS += "expat"
 DEPENDS += "udev"
 DEPENDS += "libvpx"
@@ -91,15 +90,7 @@ do_compile() {
   
   oe_runmake
 }
-
-PACKAGECONFIG ??= "${@bb.utils.contains('SOC_FAMILY', 'rpi', '', 'cairo-glesv2', d)}"
-
-EXTRA_OECONF += " --disable-static --disable-setuid-install --enable-simple-clients --enable-clients --disable-libunwind --disable-xwayland --disable-xwayland-test --disable-x11-compositor --disable-rpi-compositor"
-# The current experimental vc4 drivers for RPI2 don't like the glesv2 backend
-#	so, only enable it for archs where this is known to work
-
-EXTRA_OECONF += "${@bb.utils.contains('PACKAGECONFIG', 'cairo-glesv2', ' --with-cairo=glesv2', '', d)}"
-DEPENDS += "${@bb.utils.contains('PACKAGECONFIG', 'cairo-glesv2', 'virtual/libgles2', '', d)}"
+EXTRA_OECONF += " --disable-static --disable-setuid-install --enable-simple-clients --enable-clients --disable-libunwind --disable-xwayland --disable-xwayland-test --disable-x11-compositor --disable-rpi-compositor "
 
 do_install() {
  export RPM_BUILD_ROOT=${D}
@@ -125,10 +116,6 @@ do_install() {
  install -m 755 weston-simple-touch ${D}${prefix}/bin
  install -m 755 weston-simple-shm ${D}${prefix}/bin
  install -m 755 weston-simple-damage ${D}${prefix}/bin
-if ${@bb.utils.contains('PACKAGECONFIG','cairo-glesv2','true','false',d)}; then
- install -m 755 weston-nested-client ${D}${prefix}/bin
- install -m 755 weston-nested ${D}${prefix}/bin
-fi
  install -m 755 weston-flower ${D}${prefix}/bin
  install -m 755 weston-image ${D}${prefix}/bin
  install -m 755 weston-cliptest ${D}${prefix}/bin
@@ -140,9 +127,6 @@ fi
  install -m 755 weston-resizor ${D}${prefix}/bin
  install -m 755 weston-eventdemo ${D}${prefix}/bin
  install -m 755 weston-clickdot ${D}${prefix}/bin
-if ${@bb.utils.contains('PACKAGECONFIG','cairo-glesv2','true','false',d)}; then
- install -m 755 weston-subsurfaces ${D}${prefix}/bin
-fi
  install -m 755 weston-transformed ${D}${prefix}/bin
  install -m 755 weston-fullscreen ${D}${prefix}/bin
  
