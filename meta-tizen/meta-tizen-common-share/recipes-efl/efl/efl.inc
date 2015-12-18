@@ -398,13 +398,12 @@ do_compile() {
   
 }
 
-EXTRA_OECONF += " --enable-g-main-loop \
+EXTRA_OECONF += " --enable-tizen \
+					--enable-g-main-loop \
 					--disable-xim \
 					--disable-scim \
 					--disable-gesture \
 					--with-tests=regular \
-					--enable-fb \
-					--disable-tslib \
 					--enable-wayland \
 					--with-opengl=es \
 					--enable-tile-rotate \
