@@ -65,11 +65,15 @@ do_compile() {
   export LANG
   unset DISPLAY
   LD_AS_NEEDED=1; export LD_AS_NEEDED ;
-  
+
+  local list="html html/images html/man"
+  for dir in $list ; do  
+	touch "${dir}/all"
+	touch "${dir}/install"
+  done
   
   autotools_do_configure
   oe_runmake
-  
   
   
 }
@@ -103,8 +107,6 @@ do_install() {
  
  rm -rf ${D}${prefix}/share/doc/tiff*
  rm -f ${D}${prefix}/lib/*.la
- find ${D} -name "Makefile*" | xargs rm -fv
- 
  
  
  
