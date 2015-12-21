@@ -117,7 +117,14 @@ do_install() {
  install -m 755 weston-calibrator ${D}${prefix}/bin
  install -m 755 weston-simple-touch ${D}${prefix}/bin
  install -m 755 weston-simple-shm ${D}${prefix}/bin
+if ${@bb.utils.contains('PACKAGECONFIG','egl','true','false',d)}; then
+ install -m 755 weston-simple-egl ${D}${prefix}/bin
+fi
  install -m 755 weston-simple-damage ${D}${prefix}/bin
+if ${@bb.utils.contains('PACKAGECONFIG','cairo-glesv2','true','false',d)}; then
+ install -m 755 weston-nested-client ${D}${prefix}/bin
+ install -m 755 weston-nested ${D}${prefix}/bin
+fi
  install -m 755 weston-flower ${D}${prefix}/bin
  install -m 755 weston-image ${D}${prefix}/bin
  install -m 755 weston-cliptest ${D}${prefix}/bin
@@ -129,6 +136,9 @@ do_install() {
  install -m 755 weston-resizor ${D}${prefix}/bin
  install -m 755 weston-eventdemo ${D}${prefix}/bin
  install -m 755 weston-clickdot ${D}${prefix}/bin
+if ${@bb.utils.contains('PACKAGECONFIG','cairo-glesv2','true','false',d)}; then
+ install -m 755 weston-subsurfaces ${D}${prefix}/bin
+fi
  install -m 755 weston-transformed ${D}${prefix}/bin
  install -m 755 weston-fullscreen ${D}${prefix}/bin
  
@@ -168,6 +178,9 @@ MANIFESTFILES_${PN} = "weston.manifest"
 weston-clients_files = ""
 weston-clients_files += "${prefix}/bin/weston-simple-touch"
 weston-clients_files += "${prefix}/bin/weston-simple-shm"
+if ${@bb.utils.contains('PACKAGECONFIG','egl','true','false',d)}; then
+weston-clients_files += "${prefix}/bin/weston-simple-egl"
+fi
 weston-clients_files += "${prefix}/bin/weston-simple-damage"
 weston-clients_files += "${prefix}/bin/weston-nested-client"
 weston-clients_files += "${prefix}/bin/weston-nested"
