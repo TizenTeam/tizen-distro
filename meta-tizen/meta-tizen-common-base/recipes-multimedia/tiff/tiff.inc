@@ -76,6 +76,7 @@ do_compile() {
   oe_runmake
   
   
+  
 }
 EXTRA_OECONF += " --disable-static --with-pic"
 
