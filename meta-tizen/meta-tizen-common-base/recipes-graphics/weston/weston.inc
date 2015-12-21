@@ -37,6 +37,7 @@ RDEPENDS_${PN} += "tlm"
 DEPENDS = ""
 #DEPENDS of weston
 DEPENDS += "mtdev"
+DEPENDS += "cairo"
 DEPENDS += "expat"
 DEPENDS += "udev"
 DEPENDS += "libvpx"
@@ -178,9 +179,7 @@ MANIFESTFILES_${PN} = "weston.manifest"
 weston-clients_files = ""
 weston-clients_files += "${prefix}/bin/weston-simple-touch"
 weston-clients_files += "${prefix}/bin/weston-simple-shm"
-if ${@bb.utils.contains('PACKAGECONFIG','egl','true','false',d)}; then
 weston-clients_files += "${prefix}/bin/weston-simple-egl"
-fi
 weston-clients_files += "${prefix}/bin/weston-simple-damage"
 weston-clients_files += "${prefix}/bin/weston-nested-client"
 weston-clients_files += "${prefix}/bin/weston-nested"
