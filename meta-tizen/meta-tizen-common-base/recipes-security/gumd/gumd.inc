@@ -122,7 +122,7 @@ pkg_postinst_libgum() {
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
     mkdir -p $D${sysconfdir}/gumd/useradd.d
     mkdir -p $D${sysconfdir}/gumd/userdel.d
     mkdir -p $D${sysconfdir}/gumd/groupadd.d
