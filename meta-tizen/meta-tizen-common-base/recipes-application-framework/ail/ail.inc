@@ -120,7 +120,7 @@ do_install() {
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
     # Create tizenglobalapp user needed for global installation
     #mkdir -p %TZ_SYS_RW_APP/.config/xwalk-service/applications
     #cd %TZ_SYS_RW_APP/
@@ -157,7 +157,8 @@ pkg_postinst_${PN}() {
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    [ "x$D" == "x" ] && ldconfig
+    [ "" != "$D" ] || ldconfig
+
     if [ $1 == 0 ]; then
         rm -f $D${prefix}/dbspace/.app_info.db*
     fi
