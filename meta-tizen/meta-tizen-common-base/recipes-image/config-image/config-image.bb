@@ -48,7 +48,9 @@ EOF
 pkg_preinst_${PN}() {
 
     # fix TIVI-2291
-    sed -ri "s/(^blacklist i8042.*$)/#fix from base-general.post \1/" $D/etc/modprobe.d/blacklist.conf
+    file="$D/etc/modprobe.d/blacklist.conf"
+    [ ! -w "$file" ] \
+    ||  sed -ri "s/(^blacklist i8042.*$)/#fix from base-general.post \1/" "$file"
 
 }
 
@@ -70,21 +72,12 @@ pkg_postinst_${PN} () {
   mkdir -p $D${sysconfdir}/profile.d
   
   if [ "x$D" != "x" ]; then  
-    cp -fra $D${localstatedir}/log $D${localstatedir}/volatile
-    #cp -fra $D/sbin $D/usr
-    #cp -fra $D/bin  $D/usr
-  
-    #rm -fr $D/lib
-    #rm -fr $D/sbin
-    #rm -fr $D/bin
-    rm -fr $D${localstatedir}/log
-    
-    #ln -s usr/lib  $D/lib
-    #ln -s usr/sbin $D/sbin
-    #ln -s usr/bin  $D/bin
-    ln -s volatile/log  $D${localstatedir}/log
-    
- fi
+    if [ -e "$D${localstatedir}/log" ] ; then
+      cp -fra $D${localstatedir}/log $D${localstatedir}/volatile
+      rm -fr $D${localstatedir}/log
+      ln -s volatile/log  $D${localstatedir}/log
+    fi
+  fi
  
   [ "x$D" != "x" ] && exit 1
    mkdir -p $D/etc/profile.d
