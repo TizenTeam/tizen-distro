@@ -300,7 +300,7 @@ do_install() {
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
@@ -309,49 +309,49 @@ pkg_postinst_${PN}() {
 
     /bin/systemctl --user enable --global murphyd.service
     setcap 'cap_net_admin=+ep' $D${prefix}/bin/murphyd
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
@@ -361,42 +361,42 @@ pkg_postrm_${PN}() {
     if [ "$1" = "0" ]; then
     systemctl --user disable --global murphyd.service
     fi
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
