@@ -222,28 +222,28 @@ do_install() {
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
 
 }
 
