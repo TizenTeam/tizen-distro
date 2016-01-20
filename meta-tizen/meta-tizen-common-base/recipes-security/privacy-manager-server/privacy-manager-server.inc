@@ -171,7 +171,7 @@ pkg_postinst_privacy-manager-client() {
 pkg_postinst_privacy-manager-server() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
     echo "Check privacy DB"
     if [ ! -f $D${prefix}/dbspace/.privacy.db ]
     then
