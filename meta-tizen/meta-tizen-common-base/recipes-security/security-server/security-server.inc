@@ -157,14 +157,17 @@ do_install() {
 pkg_postinst_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
-    systemctl daemon-reload
-    if [ $1 = 1 ]; then
+    [ "" != "$D" ] || ldconfig
+
     # installation
+    if [ $1 = 1 ]; then
+        systemctl daemon-reload
         systemctl start security-server.service
     fi
-    if [ $1 = 2 ]; then
+
     # update
+    if [ $1 = 2 ]; then
+        systemctl daemon-reload
         systemctl restart security-server.service
     fi
 
@@ -195,7 +198,7 @@ pkg_postrm_libsecurity-server-client() {
 pkg_postrm_${PN}() {
     #!/bin/sh -e
 
-    ldconfig
+    [ "" != "$D" ] || ldconfig
     if [ $1 = 0 ]; then
     # unistall
         systemctl daemon-reload
