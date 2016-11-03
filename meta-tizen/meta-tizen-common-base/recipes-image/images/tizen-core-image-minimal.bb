@@ -51,6 +51,9 @@ CORE_IMAGE_BASE_INSTALL += "coreutils"
 CORE_IMAGE_BASE_INSTALL += "procps"
 CORE_IMAGE_BASE_INSTALL += "ncurses-terminfo"
 
+# Console
+CORE_IMAGE_EXTRA_INSTALL += "systemd-serialgetty util-linux-agetty"
+
 # Fonts
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-ttf"
 CORE_IMAGE_EXTRA_INSTALL += "packagegroup-tizen-fonts-pango"
