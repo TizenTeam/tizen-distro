@@ -21,7 +21,7 @@ SRCREV = "1c6d7a3b259467df3c02c1fb0bb4c57d70192d15"
 
 PV = "216+git${SRCPV}"
 
-SRC_URI = "git://review.tizen.org/platform/upstream/systemd;protocol=git;tag=1c6d7a3b259467df3c02c1fb0bb4c57d70192d15;nobranch=1 \
+SRC_URI = "git://git.tizen.org/platform/upstream/systemd;protocol=git;tag=1c6d7a3b259467df3c02c1fb0bb4c57d70192d15;nobranch=1 \
            file://touchscreen.rules \
            file://00-create-volatile.conf \
            file://init \
